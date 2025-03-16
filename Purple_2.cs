@@ -47,8 +47,8 @@ namespace Lab_7
                 Array.Copy(marks, _marks, marks.Length);
 
                 int points = 60 + (_distance - target) * 2;
-                if (points < 0) points = 0;
                 Result += points + marks.Sum() - marks.Max() - marks.Min();
+                if (Result < 0) Result = 0;
             }
 
             public static void Sort(Participant[] array)

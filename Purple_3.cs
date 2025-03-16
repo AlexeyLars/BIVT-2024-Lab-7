@@ -53,19 +53,19 @@ namespace Lab_7
 
             public void Evaluate(double result)
             {
-                if (_markIndex >= 7) return;
+                if (_marks == null || _markIndex >= 7) return;
                 _marks[_markIndex++] = result;
             }
 
             public static void SetPlaces(Participant[] participants)
             {
-                if (participants == null) return;
-                Participant[] temp = new Participant[participants.Length];
-                for (int i = 0; i < 7; i++) // i-й судья
+                if (participants.Length == 0 || participants == null) return;
+                Participant[] temp = participants.Where(p => p._marks != null && p._places != null).ToArray();
+                int size = temp.Length;
+                for (int i = 0; i < 7; ++i) // i-й судья
                 {
-                    temp = participants.Where(p => p._marks != null && p._places != null)
-                        .OrderByDescending(p => p._marks[i]).ToArray();
-                    for (int j = 0; j < temp.Length; j++) temp[j]._places[i] = j + 1;
+                    temp = temp.OrderByDescending(p => p._marks[i]).ToArray();
+                    for (int j = 0; j < size; ++j) temp[j]._places[i] = j + 1;
                 }
 
                 Array.Copy(temp.Concat(participants.Where(p => p._marks == null || p._places == null)).ToArray(),

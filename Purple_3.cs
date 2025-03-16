@@ -119,10 +119,11 @@ namespace Lab_7
 
             public Skating(double[] moods)
             {
-                if (moods == null) return;
                 _participants = new Participant[0];
-                _moods = new double[7];
-                Array.Copy(moods, _moods, moods.Length > _moods.Length ? _moods.Length : moods.Length);
+                if (moods == null) return;
+                int size = moods.Length > 7 ? 7 : moods.Length;
+                _moods = new double[size];
+                Array.Copy(moods, _moods, size);
                 ModificateMood();
             }
 

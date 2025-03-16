@@ -41,7 +41,7 @@ namespace Lab_7
 
             public void Jump(int distance, int[] marks, int target)
             {
-                if (marks == null || marks.Length != 5) return;
+                if (marks == null || _marks == null || distance < 0 || marks.Length != 5) return;
 
                 _distance = distance;
                 Array.Copy(marks, _marks, marks.Length);
@@ -137,6 +137,7 @@ namespace Lab_7
             }
             
             public void Jump(int distance, int[] marks) {
+                if (_participants == null) return;
                 for (int i = 0; i < _participants.Length; i++) {
                     if (_participants[i].Marks.All(m => m == 0)) {
                         _participants[i].Jump(distance, marks, _standard);

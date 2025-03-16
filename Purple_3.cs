@@ -59,7 +59,7 @@ namespace Lab_7
 
             public static void SetPlaces(Participant[] participants)
             {
-                if (participants.Length == 0 || participants == null) return;
+                if (participants == null || participants.Length == 0) return;
                 Participant[] temp = participants.Where(p => p._marks != null && p._places != null).ToArray();
                 int size = temp.Length;
                 for (int i = 0; i < 7; ++i) // i-й судья
